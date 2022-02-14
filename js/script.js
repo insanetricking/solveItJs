@@ -7,22 +7,24 @@ class Sample {
         this.parent = document.querySelector('.ex__box');
         this.amount = props.amount;
         this.numArray = ['+', '-', '*', '/'];
+        this.score = 0;
+        this.counter = 0;
 
-        console.log('its here');
         this.render();
+
+
     }
 
     render() {
 
-        console.log('its here');
         for (let i = 0; i < this.amount; i++) {
-            console.log('its here');
+           
             let firstNum = this.getRandomNum(0, 10);
             let secondNum = this.getRandomNum(0, 10);
             let randomSign = this.getRandomSign();
             let sampleStr = `${String(firstNum)} ${String(randomSign)} ${String(secondNum)}`;
 
-            let sampleResult
+            let sampleResult;
             if (randomSign === '+') {
                 sampleResult = firstNum + secondNum;
             } else if (randomSign === '-') {
@@ -47,20 +49,35 @@ class Sample {
 
             let btn = sample.querySelector('.sample__check');
 
-            btn.addEventListener('click', (e)=>{
+            btn.addEventListener('click', (e) => {
                 const result = sample.querySelector('.sample__result');
                 const input = sample.querySelector('.sample__input');
                 result.classList.remove('hidden');
                 btn.classList.add('hidden');
                 input.setAttribute('disabled', true);
-                if(input.value == sampleResult ){
+                if (input.value == sampleResult) {
                     input.style.color = '#4dfb4d';
-                }else if(input.value == ''){
+                    this.score += 1;
+                    
+
+                } else if (input.value == '') {
                     input.style.color = 'red';
-                    input.value ='Пусто';
-                }else{
+                    input.value = 'Пусто';
+
+
+                } else {
                     input.style.color = 'red';
+
+
                 }
+                this.counter += 1;
+                console.log(this.counter);
+                console.log(this.amount);
+                if(this.counter == this.amount){
+                    console.log('i here');
+                    this.showResult();
+                }
+                
             });
         }
     }
@@ -75,8 +92,32 @@ class Sample {
         return this.numArray[this.getRandomNum(0, 1)];
     }
 
+    showResult(){
+        let modalResult = document.createElement('div');
+
+        modalResult.classList.add('result');
+
+        modalResult.innerHTML = `
+        <div class="result__box">
+        <p class="result__text">У тебя ${this.score} очков)</p>
+        <input type="submit" class="result__closer" value="Еще разок?)">
+        </div>
+        `;
+        document.body.style.overflow = 'hidden';
+        document.body.append(modalResult);
+
+
+        document.querySelector('.result__closer').addEventListener('click', ()=>{
+            document.location.reload();
+        });
+    }
+
 
 }
+
+
+
+
 
 
 const settings = document.querySelector('.ex__settings'),
@@ -87,8 +128,7 @@ const settings = document.querySelector('.ex__settings'),
 
 
 submit.addEventListener('click', () => {
-    console.log('i work');
-    console.log(input.value);
+
     let sample = new Sample({
         amount: input.value
     });
