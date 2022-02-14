@@ -17,8 +17,8 @@ class Sample {
         console.log('its here');
         for (let i = 0; i < this.amount; i++) {
             console.log('its here');
-            let firstNum = this.getRandomNum(0, this.amount);
-            let secondNum = this.getRandomNum(0, this.amount);
+            let firstNum = this.getRandomNum(0, 10);
+            let secondNum = this.getRandomNum(0, 10);
             let randomSign = this.getRandomSign();
             let sampleStr = `${String(firstNum)} ${String(randomSign)} ${String(secondNum)}`;
 
