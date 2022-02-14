@@ -36,7 +36,7 @@ class Sample {
                     <div class="sample__str">
                         ${sampleStr}
                     </div>
-                    <input type="number" class="sample__input">
+                    <input type="text" class="sample__input">
                     <div class="sample__result hidden">
                         ${sampleResult}
                     </div>
