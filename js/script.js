@@ -21,7 +21,7 @@ class Sample {
 			let randomSign = this.getRandomSign();
 			let firstNum = this.getRandomNum(0, 10);
 			let secondNum =
-				randomSign == "-" ? this.getRandomNum(1, firstNum) : this.getRandomNum(0, 10);
+				randomSign == "-" ? this.getRandomNum(0, firstNum) : this.getRandomNum(0, 10);
 
 			console.log(secondNum);
 
